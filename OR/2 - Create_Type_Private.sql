@@ -1,0 +1,72 @@
+CREATE OR REPLACE TYPE BODY TP_ENDERECO AS
+CONSTRUCTOR FUNCTION TP_ENDERECO(ruaEnd VARCHAR2, numEnd NUMBER, cidadeEnd VARCHAR2, estadoEnd VARCHAR2) RETURN SELF AS RESULT IS
+    BEGIN
+        RUA := ruaEnd;
+        NUMERO := ruaEnd;
+        CIDADE := cidadeEnd;
+        ESTADO := estadoEnd;
+        CEP := 'XXXXXXXX';
+        RETURN;
+    END;
+END;
+/
+
+CREATE OR REPLACE TYPE BODY TP_PESSOA AS
+FINAL MAP MEMBER FUNCTION getCPF RETURN NUMBER IS
+    BEGIN
+        RETURN TO_NUMBER(cpf);
+    END;
+MEMBER FUNCTION getNome RETURN VARCHAR2 IS
+    BEGIN
+        RETURN nome;
+    END;
+END;
+/
+
+CREATE OR REPLACE TYPE BODY TP_PROFESSOR AS
+OVERRIDING MEMBER FUNCTION getNome RETURN VARCHAR2 IS
+    BEGIN
+        RETURN 'prof.' + nome;
+    END;
+MEMBER PROCEDURE aumentarSalario(aumento NUMBER) IS
+    BEGIN
+        salario := salario + aumento;
+    END;
+END;
+/
+
+CREATE OR REPLACE TYPE BODY TP_ESTUDANTE AS
+MEMBER FUNCTION investimento RETURN NUMBER IS
+    BEGIN
+        RETURN mensalidade-bolsa;
+    END;
+END;
+/
+
+CREATE OR REPLACE TYPE BODY TP_CURSO AS
+ORDER MEMBER FUNCTION maiorDuracao(d TP_CURSO) RETURN NUMBER IS
+    BEGIN
+        IF SELF.DURACAO > d.duracao THEN
+            RETURN 1;
+        ELSIF SELF.DURACAO < d.duracao THEN
+            RETURN -1;
+        ELSE
+            RETURN 0;
+        END IF;
+    END;
+END;
+/
+
+/*CREATE OR REPLACE TYPE BODY TP_MONITOR AS
+CONSTRUCTOR FUNCTION TP_MONITOR(ids NUMBER, nomeMonitor VARCHAR2) 
+RETURN SELF AS RESULT IS
+    BEGIN
+        MONITOR_ID := ids;
+        NOME := nomeMonitor;
+        SALARIO := 800.00;
+        CARGA_HORARIA := 20;
+        RETURN SELF;
+    END;
+END;
+*/
+
