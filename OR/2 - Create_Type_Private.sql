@@ -28,9 +28,9 @@ OVERRIDING MEMBER FUNCTION getNome RETURN VARCHAR2 IS
     BEGIN
         RETURN ('Prof. ' || nome);
     END;
-MEMBER PROCEDURE aumentarSalario(aumento NUMBER) IS
+MEMBER PROCEDURE salarioDoProfessor(SELF TP_PROFESSOR) IS
     BEGIN
-        salario := salario + aumento;
+        dbms_output.put_line('O salario de ' || nome || ' é R$' || salario);
     END;
 END;
 /
