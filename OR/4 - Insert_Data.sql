@@ -1,26 +1,26 @@
 INSERT INTO TB_PROFESSOR VALUES(
     TP_PROFESSOR(
         '10999999999',
-        'Valeria Times',
+        'Veronica Lemos',
         TO_DATE('10/03/98', 'DD/MM/YY'),
         VA_FONES(
-            TP_TELEFONE('81', '996566602'),
-            TP_TELEFONE('82', '996566602')
+            TP_TELEFONE('81', '996566605'),
+            TP_TELEFONE('82', '996566605')
         ),
         TP_ENDERECO(
             'Rua Federal',
-            133,
+            100,
             'recife',
             'PE',
             '52050135'
         ),
         'Professor Exatas',
-        5000.00,
+        8000.00,
         1,
         (
-            SELECT REF(P) FROM TB_PROFESSOR P WHERE PROFESSOR_ID =2 
+            SELECT REF(P) FROM TB_PROFESSOR P WHERE PROFESSOR_ID =1 
         ),
-        TP_NT_AUXILIARES(TP_MONITOR(1, 'Julia', 800.00, 30), TP_MONITOR(2, 'ruy', 800.00, 30))
+        TP_NT_AUXILIARES(TP_MONITOR(1, 'Julia', 800.00, 30), TP_MONITOR(2, 'ruy', 600.00, 20))
     )
 );
 /
@@ -28,15 +28,15 @@ INSERT INTO TB_PROFESSOR VALUES(
 INSERT INTO TB_PROFESSOR VALUES(
     TP_PROFESSOR(
         '11999999999',
-        'João Luiz',
-        TO_DATE('10/03/90', 'DD/MM/YY'),
+        'Jose Antonio',
+        TO_DATE('10/03/85', 'DD/MM/YY'),
         VA_FONES(
-            TP_TELEFONE('81', '986566602'),
-            TP_TELEFONE('82', '986566602')
+            TP_TELEFONE('81', '986566601'),
+            TP_TELEFONE('82', '986566601')
         ),
         TP_ENDERECO(
             'Rua Federal',
-            100,
+            101,
             'recife',
             'PE',
             '52050111'
@@ -47,16 +47,73 @@ INSERT INTO TB_PROFESSOR VALUES(
         (
             SELECT REF(P) FROM TB_PROFESSOR P WHERE PROFESSOR_ID =1
         ),
-        TP_NT_AUXILIARES(TP_MONITOR(3, 'ruy', 800.00, 30))
+        TP_NT_AUXILIARES(TP_MONITOR(3, 'lucas', 1000.00, 30))
     )
 );
 /
 
+INSERT INTO TB_PROFESSOR VALUES(
+    TP_PROFESSOR(
+        '12999999999',
+        'Patricia Lemos',
+        TO_DATE('10/03/95', 'DD/MM/YY'),
+        VA_FONES(
+            TP_TELEFONE('81', '986566602')
+        ),
+        TP_ENDERECO(
+            'Rua Federal',
+            102,
+            'recife',
+            'PE',
+            '52050111'
+        ),
+        'Professor de Programacao',
+        5000.00,
+        3,
+        (
+            SELECT REF(P) FROM TB_PROFESSOR P WHERE PROFESSOR_ID =2
+        ),
+        NULL
+    )
+);
+/
+
+INSERT INTO TB_PROFESSOR VALUES(
+    TP_PROFESSOR(
+        '13999999999',
+        'Francisco Neto',
+        TO_DATE('10/03/90', 'DD/MM/YY'),
+        VA_FONES(
+            TP_TELEFONE('81', '986566605')
+        ),
+        TP_ENDERECO(
+            'Rua Federal',
+            103,
+            'recife',
+            'PE',
+            '52050111'
+        ),
+        'Professor de Programacao',
+        3000.00,
+        4,
+        (
+            SELECT REF(P) FROM TB_PROFESSOR P WHERE PROFESSOR_ID =3
+        ),
+        NULL
+    )
+);
+/
+/*UPDATE TB_PROFESSOR
+SET SUPERVISOR = (SELECT REF(P) FROM TB_PROFESSOR P WHERE PROFESSOR_ID =4)
+WHERE SUPERVISOR IS NULL;
+/
+*/
+
 --*********************************************************************************************************************************************************************
 INSERT INTO TB_ESTUDANTE VALUES(
     TP_ESTUDANTE(
-        '12999999999',
-        'Matheus Oliveira',
+        '14999999999',
+        'Matheus',
         TO_DATE('10/03/98', 'DD/MM/YY'),
         VA_FONES(
             TP_TELEFONE('81', '996566603')
@@ -76,15 +133,15 @@ INSERT INTO TB_ESTUDANTE VALUES(
 
 INSERT INTO TB_ESTUDANTE VALUES(
     TP_ESTUDANTE(
-        '13999999999',
-        'Carlos Oliveira',
-        TO_DATE('10/03/98', 'DD/MM/YY'),
+        '15999999999',
+        'Alexandre',
+        TO_DATE('10/12/98', 'DD/MM/YY'),
         VA_FONES(
-            TP_TELEFONE('81', '996566603')
+            TP_TELEFONE('91', '996566603')
         ),
         TP_ENDERECO(
-            'Rua Gildo Neto',
-            135,
+            'Rua do Teste',
+            140,
             'recife',
             'PE',
             '52050135'
@@ -97,15 +154,15 @@ INSERT INTO TB_ESTUDANTE VALUES(
 
 INSERT INTO TB_ESTUDANTE VALUES(
     TP_ESTUDANTE(
-        '14999999999',
-        'Antonio Oliveira',
-        TO_DATE('10/03/98', 'DD/MM/YY'),
+        '16999999999',
+        'Antonio',
+        TO_DATE('25/03/98', 'DD/MM/YY'),
         VA_FONES(
-            TP_TELEFONE('81', '996566603')
+            TP_TELEFONE('91', '996566604')
         ),
         TP_ENDERECO(
-            'Rua Gildo Neto',
-            135,
+            'Rua do Teste',
+            140,
             'recife',
             'PE',
             '52050135'
@@ -118,8 +175,8 @@ INSERT INTO TB_ESTUDANTE VALUES(
 
 INSERT INTO TB_ESTUDANTE VALUES(
     TP_ESTUDANTE(
-        '1599999999',
-        'Lucio Maia',
+        '1799999999',
+        'Lucio',
         TO_DATE('10/03/94', 'DD/MM/YY'),
         VA_FONES(
             TP_TELEFONE('81', '996566605')
@@ -170,7 +227,7 @@ INSERT INTO TB_CURSO VALUES(
 INSERT INTO TB_INSTRUI VALUES(
     TP_INSTRUI(
     (SELECT REF(P) FROM TB_PROFESSOR P WHERE P.CPF = '10999999999'),
-    (SELECT REF(E) FROM TB_ESTUDANTE E WHERE E.CPF = '12999999999'),
+    (SELECT REF(E) FROM TB_ESTUDANTE E WHERE E.CPF = '14999999999'),
     (SELECT REF(C) FROM TB_CURSO C WHERE C.CURSO_ID = 1)
     )
 );
@@ -179,7 +236,7 @@ INSERT INTO TB_INSTRUI VALUES(
 INSERT INTO TB_INSTRUI VALUES(
     TP_INSTRUI(
     (SELECT REF(P) FROM TB_PROFESSOR P WHERE P.CPF = '11999999999'),
-    (SELECT REF(E) FROM TB_ESTUDANTE E WHERE E.CPF = '13999999999'),
+    (SELECT REF(E) FROM TB_ESTUDANTE E WHERE E.CPF = '15999999999'),
     (SELECT REF(C) FROM TB_CURSO C WHERE C.CURSO_ID = 2)
     )
 );
@@ -187,8 +244,17 @@ INSERT INTO TB_INSTRUI VALUES(
 
 INSERT INTO TB_INSTRUI VALUES(
     TP_INSTRUI(
-    (SELECT REF(P) FROM TB_PROFESSOR P WHERE P.CPF = '11999999999'),
-    (SELECT REF(E) FROM TB_ESTUDANTE E WHERE E.CPF = '14999999999'),
+    (SELECT REF(P) FROM TB_PROFESSOR P WHERE P.CPF = '12999999999'),
+    (SELECT REF(E) FROM TB_ESTUDANTE E WHERE E.CPF = '16999999999'),
+    (SELECT REF(C) FROM TB_CURSO C WHERE C.CURSO_ID = 3)
+    )
+);
+/
+
+INSERT INTO TB_INSTRUI VALUES(
+    TP_INSTRUI(
+    (SELECT REF(P) FROM TB_PROFESSOR P WHERE P.CPF = '12999999999'),
+    (SELECT REF(E) FROM TB_ESTUDANTE E WHERE E.CPF = '17999999999'),
     (SELECT REF(C) FROM TB_CURSO C WHERE C.CURSO_ID = 3)
     )
 );
