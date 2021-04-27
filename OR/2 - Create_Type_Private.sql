@@ -26,7 +26,7 @@ END;
 CREATE OR REPLACE TYPE BODY TP_PROFESSOR AS
 OVERRIDING MEMBER FUNCTION getNome RETURN VARCHAR2 IS
     BEGIN
-        RETURN ('prof.' || nome);
+        RETURN ('Prof. ' || nome);
     END;
 MEMBER PROCEDURE aumentarSalario(aumento NUMBER) IS
     BEGIN
